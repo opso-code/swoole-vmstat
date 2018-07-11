@@ -5,7 +5,7 @@
 - 基于 `swoole_websocket_server` 实现websocket实时推送给客户端
 - 使用`process`的`exec`方法，运行`vmstat`命令，再将结果广播到`websocket`
 - 同时具有`http`服务器功能，浏览器直接访问 `http://192.168.33.10:9100` 将展示`public/index.html`
-- 进程命名格式  swoole-vmstat  master/manager/worker/task-PID-编号
+- 进程命名格式  swoole-vmstat  master/manager/worker/task-PID-[编号]
 
 ## 运行
 
@@ -35,10 +35,10 @@ $ sudo systemctl status swoole-vmstat.service
    Memory: 33.1M
       CPU: 337ms
    CGroup: /system.slice/swoole-vmstat.service
-           ├─11002 /usr/local/php/bin/php /data/wwwroot/swoole/vmstat/run.php
-           ├─11009 swoole-vmstat master-11002                             
-           ├─11012 swoole-vmstat worker-11012-0                           
-           └─11013 /usr/bin/vmstat 1 3600
+           ├─5135 swoole-vmstat master-5135                               
+           ├─5143 swoole-vmstat manager-5143                             
+           ├─5146 swoole-vmstat worker-5146-0                             
+           └─5147 /usr/bin/vmstat 1 3600
 ```
 
 ## 参考

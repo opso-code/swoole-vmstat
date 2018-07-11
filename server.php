@@ -20,7 +20,7 @@ class StatServer
 
     public function __construct() {
         $this->server_name = 'swoole-vmstat';
-        $this->onEvents = array('start', 'workerstart', 'managerstart', 'message', 'open', 'close', 'request', 'shutdown', 'task', 'finish');
+        $this->onEvents = array('start', 'workerstart', 'managerstart', 'managerstop','message', 'open', 'close', 'request', 'shutdown', 'task', 'finish');
         $this->init();
     }
 
@@ -62,16 +62,19 @@ class StatServer
         $this->server->start();
     }
 
-    public function onStart() {
-        $this->putLog($this->server_name . ' start !');
-    }
-
-    public function onShutdown() {
-        $this->putLog($this->server_name . ' shutdown !');
-    }
-
-    public function onManagerStart(swoole_server $serv) {
+    public function onStart(swoole_websocket_server $serv) {
         $name = "{$this->server_name} master-{$serv->master_pid}";
+        cli_set_process_title($name);
+        $this->putLog("{$name} start");
+    }
+
+    public function onShutdown(swoole_websocket_server $serv) {
+        $name = "{$this->server_name} master-{$serv->master_pid}";
+        $this->putLog("{$name} shutdown");
+    }
+
+    public function onManagerStart(swoole_websocket_server $serv) {
+        $name = "{$this->server_name} manager-{$serv->manager_pid}";
         cli_set_process_title($name);
         $this->putLog("{$name} start");
     }
