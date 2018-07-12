@@ -29,24 +29,15 @@ $ cd /etc/systemd/system/
 $ sudo systemctl enable swoole-vmstat.service
 $ sudo systemctl start swoole-vmstat.service
 $ sudo systemctl status swoole-vmstat.service
-● swoole-vmstat.service - Vmsat Http Server By Swoole
-   Loaded: loaded (/etc/systemd/system/swoole-vmstat.service; enabled; vendor preset: enabled)
-   Active: active (running) since Wed 2018-07-11 12:14:29 CST; 17min ago
- Main PID: 11002 (php)
-    Tasks: 6
-   Memory: 33.1M
-      CPU: 337ms
-   CGroup: /system.slice/swoole-vmstat.service
-           ├─5135 swoole-vmstat master-5135                               
-           ├─5143 swoole-vmstat manager-5143                             
-           ├─5146 swoole-vmstat worker-5146-0                             
-           └─5147 /usr/bin/vmstat 1 3600
 ```
+
+![bash](http://7xocls.com1.z0.glb.clouddn.com/bash.png)
 
 ## 展示
 
 浏览器访问：http://192.168.33.10:9100
 
+![展示](http://7xocls.com1.z0.glb.clouddn.com/swoole-vmstat.png)
 
 ## 参考
 
